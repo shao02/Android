@@ -33,6 +33,10 @@ public class BroadCastMsgsAdapter extends RecyclerView.Adapter<BroadCastMsgsAdap
         }
     }
 
+    public void updateList(List<BroadcastMsg> broadcastMsg){
+        this.broadcastMsg = broadcastMsg;
+    }
+
     @Override
     public BroadCastMsgsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         CardView cv = (CardView) LayoutInflater.from(parent.getContext())

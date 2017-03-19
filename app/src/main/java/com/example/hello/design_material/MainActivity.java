@@ -1,6 +1,7 @@
 package com.example.hello.design_material;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.hello.design_material.domain.BroadcastMsg;
@@ -18,49 +20,22 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<BroadcastMsg> broadcastMsg = new ArrayList<BroadcastMsg>();
+    private List<BroadcastMsg> broadcastMsg = LoadedData.broadcastMsg;
     private BroadCastMsgsAdapter adapter;
     private RecyclerView recyclerView;
+    private int currentMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        broadcastMsg.add (new BroadcastMsg("I am a basketball superstar, wanna play ball together?",
-                "2 hours ago",
-                "Kevin Garnett",
-                "profile"));
-        broadcastMsg.add(new BroadcastMsg("i am miss hong kong, i am 25 years old" +
-                ", i want to visit new york,where can i go, i am boring, very very boring, new to this nice app",
-                "1 hours ago",
-                "Lai ik",
-                "pic1"));
-        broadcastMsg.add(new BroadcastMsg("i want to go for a party",
-                "1 hours ago",
-                "wong lee",
-                "pic2"));
-        broadcastMsg.add( new BroadcastMsg("i want to walk around...",
-                "30 mins ago",
-                "kevin wang",
-                "pic3"));
-        broadcastMsg.add(new BroadcastMsg("i want to walk around...",
-                "30 mins ago",
-                "kevin wang",
-                "pic3"));
-        broadcastMsg.add(new BroadcastMsg("i want to walk around...",
-                "30 mins ago",
-                "kevin wang",
-                "pic3"));
-        broadcastMsg.add(new BroadcastMsg("i want to walk around...",
-                "30 mins ago",
-                "kevin wang",
-                "pic3"));
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         recyclerView = (RecyclerView) findViewById(R.id.broadcast_msgs_view);
         adapter = new BroadCastMsgsAdapter(broadcastMsg);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         EditText editText = (EditText) findViewById(R.id.edit_post);
+        currentMenu = R.id.chat_latest;
         Log.d("STATE","Hello, this is Shao");
         OnFocusChangeListioner ofcListener = new OnFocusChangeListioner();
         editText.setOnFocusChangeListener(ofcListener);
@@ -72,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         if(content.getText().toString() == null || content.getText().toString().isEmpty()) return;
         broadcastMsg.add(0,new BroadcastMsg(content.getText().toString(),
                 "Now",
-                "wong lee",
-                "lalee"));
+                "lee",
+                "lalee","M"));
         adapter.notifyItemInserted(0);
         recyclerView.scrollToPosition(0);
 
@@ -83,6 +58,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void chatMenuSwitch(View view){
+        if(currentMenu == view.getId()) return;
+        currentMenu = view.getId();
+        Button latest = (Button) findViewById(R.id.chat_latest);
+        Button my = (Button) findViewById(R.id.chat_my);
+        Button popular = (Button) findViewById(R.id.chat_popular);
+        popular.setTypeface(null, Typeface.NORMAL);
+        latest.setTypeface(null, Typeface.NORMAL);
+        my.setTypeface(null, Typeface.NORMAL);
+        switch(view.getId()) {
+            case R.id.chat_latest:
+                latest.setTypeface(null, Typeface.BOLD);
+                adapter.updateList(LoadedData.broadcastMsg);
+                break;
+            case R.id.chat_my:
+                my.setTypeface(null, Typeface.BOLD);
+                adapter.updateList(LoadedData.getMyList());
+                break;
+            case R.id.chat_popular:
+                adapter.updateList(LoadedData.getPopularList());
+                popular.setTypeface(null, Typeface.BOLD);
+                break;
+        }
+        adapter.notifyDataSetChanged();
+    }
+
     private class OnFocusChangeListioner implements View.OnFocusChangeListener {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             if(v.getId() == R.id.edit_post && !hasFocus) {
                 InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
             }
         }
     }

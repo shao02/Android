@@ -9,13 +9,15 @@ public class BroadcastMsg {
     private String broadcast_dateTime;
     private String userName;
     private String profile_image;
+    private String gender;
 
 
-    public BroadcastMsg(String broadcast_content, String broadcast_dateTime, String userName, String profile_image) {
+    public BroadcastMsg(String broadcast_content, String broadcast_dateTime, String userName, String profile_image,String gender) {
         this.broadcast_content = broadcast_content;
         this.broadcast_dateTime = broadcast_dateTime;
         this.userName = userName;
         this.profile_image = profile_image;
+        this.gender = gender;
     }
 
 
@@ -49,5 +51,13 @@ public class BroadcastMsg {
 
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
