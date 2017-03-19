@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hello.design_material.domain.BroadcastMsg;
 
@@ -49,13 +50,26 @@ public class MainActivity extends AppCompatActivity {
                 "Now",
                 "lee",
                 "lalee","M"));
-        adapter.notifyItemInserted(0);
-        recyclerView.scrollToPosition(0);
+        if(currentMenu == R.id.chat_latest){
+            adapter.notifyItemInserted(0);
+            recyclerView.scrollToPosition(0);
+        }else if(currentMenu == R.id.chat_my){
+            adapter.updateList(LoadedData.getMyList());
+        }else{
+            adapter.updateList(LoadedData.getPopularList());
+        }
 
         if (this.getCurrentFocus() != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+
+        Context context = getApplicationContext();
+        CharSequence text = "Message sent";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        content.setText(null);
     }
 
     public void chatMenuSwitch(View view){
