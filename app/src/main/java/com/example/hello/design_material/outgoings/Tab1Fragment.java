@@ -1,4 +1,4 @@
-package com.example.hello.design_material;
+package com.example.hello.design_material.outgoings;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.hello.design_material.R;
+
 
 /**
  * @author mwho
  *
  */
-public class Tab2Fragment extends Fragment {
+public class Tab1Fragment extends Fragment {
     /** (non-Javadoc)
-     * @see Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)
+     * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
      */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,6 +30,6 @@ public class Tab2Fragment extends Fragment {
             // the view hierarchy; it would just never be used.
             return null;
         }
-        return (LinearLayout)inflater.inflate(R.layout.tab_frag2_layout, container, false);
+        return (LinearLayout)inflater.inflate(R.layout.tab_frag1_layout, container, false);
     }
 }

@@ -1,15 +1,14 @@
-package com.example.hello.design_material;
+package com.example.hello.design_material.broadcast;
 
 import android.content.res.Resources;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hello.design_material.R;
 import com.example.hello.design_material.domain.BroadcastMsg;
 
 import java.util.List;

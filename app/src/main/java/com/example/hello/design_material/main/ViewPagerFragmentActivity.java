@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.example.hello.design_material;
+package com.example.hello.design_material.main;
 import android.support.design.widget.TabLayout;
 import java.util.List;
 import java.util.Vector;
@@ -10,6 +10,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+
+import com.example.hello.design_material.R;
+import com.example.hello.design_material.groups.Tab2Fragment;
+import com.example.hello.design_material.map.Tab3Fragment;
+import com.example.hello.design_material.broadcast.BroadcastFragment;
 
 
 /**
@@ -52,7 +57,6 @@ public class ViewPagerFragmentActivity extends FragmentActivity{
 
             }
         });
-
     }
 
     /**
@@ -61,7 +65,7 @@ public class ViewPagerFragmentActivity extends FragmentActivity{
     private void initialisePaging() {
 
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, BroadcastFragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Tab2Fragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
         //
@@ -70,4 +74,6 @@ public class ViewPagerFragmentActivity extends FragmentActivity{
         pager.setAdapter(this.mPagerAdapter);
         setTab(pager);
     }
+
+
 }

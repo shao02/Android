@@ -1,4 +1,4 @@
-package com.example.hello.design_material;
+package com.example.hello.design_material.helper;
 
 import com.example.hello.design_material.domain.BroadcastMsg;
 

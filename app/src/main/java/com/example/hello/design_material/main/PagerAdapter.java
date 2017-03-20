@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.example.hello.design_material;
+package com.example.hello.design_material.main;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import android.support.v4.view.ViewPager;
  */
 public class PagerAdapter extends FragmentPagerAdapter {
     private String[] titles = new String[]{
-      "Tab 1","Tab 2","Tab 3"
+      "broadcasts","outgoings","groups","map","profile"
     };
     private List<Fragment> fragments;
     private ViewPager pager;
