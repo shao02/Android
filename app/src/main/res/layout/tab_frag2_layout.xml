@@ -5,5 +5,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#F10000"
     android:id="@+id/tab_frag2_layout"
-    tools:context="com.example.hello.design_material.MainActivity">
+    tools:context="com.example.hello.design_material.main.ViewPagerFragmentActivity">
 </LinearLayout>
